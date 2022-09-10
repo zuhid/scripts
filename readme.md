@@ -1,6 +1,6 @@
 # Files
 
-## git-tool.sh
+## git-daily.sh
 
 I use this file to make sure that all the repos are up to date locally
 

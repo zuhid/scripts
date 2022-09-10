@@ -8,6 +8,7 @@ location="centralus"
 appservice="$base-appservice"
 api_cs="$base-api-cs"
 web_angular="$base-web-angular"
+sql_server="$base-sql-server"
 
 # delete resource group
 az group delete \
@@ -29,3 +30,9 @@ az webapp delete \
 az webapp delete \
   --resource-group $resource_group \
   --name $web_angular
+
+# delete swl server
+az sql server delete \
+  --resource-group $resource_group \
+  --name $sql_server \
+  --yes
