@@ -26,7 +26,16 @@ git_daily() {
     else # update the repo
       git -C $localFolder/$project branch # list local branches
       git -C $localFolder/$project remote prune origin # remove local branches which were deleted from origin
-      git -C $localFolder/$project pull --quiet # pull the latest
+
+      # delete local branches that no longer exists in origin
+      git -C $localFolder/$project branch -vv | # list local branches with ': gone]' if it does not exist
+        grep ': gone]' | # get the gone brnahes
+        grep -v "\*" | # ignore the gone branch if that branch is currently selected
+        awk '{ print $1; }' |  # get the branch name
+        xargs -r git -C $localFolder/$project branch -D # remove the branch
+
+      # pull the latest
+      git -C $localFolder/$project pull --quiet
     fi
   done
 }
