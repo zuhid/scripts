@@ -42,5 +42,5 @@ git_daily() {
 
 git_daily "git@github.com:zuhid" "github-zuhid" ${zuhid[@]}
 
-echo "Done..."
-sleep 2s
+echo "Done. Hit enter to close..."
+read # keeps the terminal open until enter is clicked
